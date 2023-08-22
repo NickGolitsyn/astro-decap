@@ -1,0 +1,85 @@
+---
+// import Nav from '../components/Nav'
+// import Footer from '../components/Footer.astro';
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+export interface Props {
+	title: string;
+  description: string;
+  permalink: string;
+}
+
+const { title, description, permalink } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <BaseHead {title} {description} {permalink} />
+	</head>
+	<body>
+		<!-- <Nav client:load /> -->
+		<!-- <div class="mb-24"></div> -->
+    <BlogHeader />
+		<slot />
+    <footer>
+      <a href="/admin">Admin Dashboard 🔐</a>
+    </footer>
+		<!-- <Footer /> -->
+	</body>
+</html>
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
+	html {
+		scroll-behavior: smooth;
+	}
+	body {
+		overflow-x: hidden;
+	}
+	img {
+		user-select: none;
+		-webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+		pointer-events: none;
+	}
+
+  header {
+    width: 100%;
+    height: 100%;
+    /* background-color: var(--theme-bg-offset); */
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+  }
+
+  .content {
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+  }
+
+  .content :global(main > * + *) {
+    margin-top: 1rem;
+  }
+
+  .intro {
+    padding-bottom: 4rem;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid var(--theme-divider);
+  }
+
+  .intro > * {
+    margin: 0;
+  }
+
+  .latest {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  footer {
+    text-align: center;
+  }
+</style>
