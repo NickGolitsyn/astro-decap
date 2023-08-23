@@ -68,7 +68,19 @@ export default defineConfig({
             value: '../../layouts/BlogPostLayout.astro'
           }]
         }]
-      }]
+      }, {
+        name: 'settings',
+        label: 'Settings',
+        label_singular: 'Setting',
+        folder: 'src/pages/settings',
+        create: true,
+        delete: true,
+        fields: [{
+          name: 'mainImage',
+          widget: 'image',
+          label: 'Main Image',
+        }]
+      }],
     },
     previewStyles: ['/src/styles/blog.css']
   }), tailwind()]

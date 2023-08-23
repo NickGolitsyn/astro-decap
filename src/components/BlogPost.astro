@@ -19,7 +19,6 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 		<div>
 			<header>
 				{coverImage && <img width="720" height="420" class="hero-image element" loading="lazy" src={coverImage} alt={alt} />}
-				{heroImage && <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt={alt} />}
 				<p class="publish-date element">{publishDate}</p>
 				<h1 class="title element">{title}</h1>
 				<!-- <Author name={author} href={authorURL} /> -->
@@ -27,7 +26,7 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 					<p><a href={authorURL}>{author}</a></p>
 				</div>
 			</header>
-			<main>
+			<main class="element">
 				<slot />
 			</main>
 		</div>
@@ -76,7 +75,8 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 		margin-bottom: 0.75rem;
 	}
 	.hero-image {
-		width: 100vw;
+		width: 70vw;
+		aspect-ratio: 2/1;
 		object-fit: cover;
 		object-position: center;
 		margin-top: 2rem;
