@@ -14,7 +14,7 @@ export interface Props {
 const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
 ---
 
-<div class="layout container">
+<div class="layout container select-none">
 	<article class="content">
 		<div>
 			<header>
@@ -22,45 +22,59 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 				{heroImage && <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt={alt} />}
 				<p class="publish-date element">{publishDate}</p>
 				<h1 class="title element">{title}</h1>
-				<Author name={author} href={authorURL} />
+				<!-- <Author name={author} href={authorURL} /> -->
+				<div class="author element">
+					<p><a href={authorURL}>{author}</a></p>
+				</div>
 			</header>
 			<main>
 				<slot />
 			</main>
 		</div>
 	</article>
-	<!-- <script is:inline>
-		let chooseElement;
-	
-		const move = function(e) {
-			const elements = document.querySelectorAll(".element")
-	
-			elements.forEach(element => {
-				const e = element as HTMLElement; // Cast to HTMLElement
-				e.addEventListener("mousedown", () => {
-					e.style.position = "absolute"
-					chooseElement = e
-	
-					document.onmousemove = (event) => {
-						let x = event.pageX
-						let y = event.pageY
-	
-						chooseElement.style.left = x - 50 + 'px'
-						chooseElement.style.top = y - 50 + 'px'
-	
-						console.log(chooseElement);
-					}
-				})
-			})
-			document.onmouseup = function (event) {
-				chooseElement = null
-			}
-		}
-	
-	</script> -->
 </div>
 
+<script>
+  window.addEventListener("load", () => {
+	const elements = document.querySelectorAll(".element");
+
+	let chooseElement;
+
+	const move = (e) => {
+		e.style.position = "absolute";
+		chooseElement = e;
+
+		document.onmousemove = (event) => {
+			if (chooseElement) {
+				const x = event.pageX;
+				const y = event.pageY;
+
+				chooseElement.style.left = x + "px";
+				chooseElement.style.top = y + "px";
+
+				console.log(chooseElement);
+			}
+		};
+	};
+
+	elements.forEach((element) => {
+		const e = element;
+
+		e.addEventListener("mousedown", () => {
+			move(e);
+		});
+	});
+
+	document.onmouseup = () => {
+		chooseElement = null;
+	};
+});
+</script>
+
 <style>
+	.author {
+		margin-bottom: 0.75rem;
+	}
 	.hero-image {
 		width: 100vw;
 		object-fit: cover;
