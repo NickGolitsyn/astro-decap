@@ -29,6 +29,11 @@ export default defineConfig({
           widget: 'string',
           label: 'Post Title'
         }, {
+          name: 'coverImage',
+          widget: 'image',
+          label: 'Cover Image',
+          required: false
+        }, {
           name: 'publishDate',
           widget: 'datetime',
           format: 'DD MMM YYYY',
@@ -57,10 +62,10 @@ export default defineConfig({
         }, {
           name: 'layout',
           widget: 'select',
-          default: '../../layouts/BlogPost.astro',
+          default: '../../layouts/BlogPostLayout.astro',
           options: [{
             label: 'Blog Post',
-            value: '../../layouts/BlogPost.astro'
+            value: '../../layouts/BlogPostLayout.astro'
           }]
         }]
       }]

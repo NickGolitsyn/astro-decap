@@ -7,19 +7,21 @@ export interface Props {
 	authorURL: string;
 	publishDate: string;
 	heroImage: string;
+	coverImage: string;
 	alt: string;
 }
 
-const { title, author, authorURL, publishDate, heroImage, alt } = Astro.props as Props;
+const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
 ---
 
-<div class="layout">
+<div class="layout container">
 	<article class="content">
 		<div>
 			<header>
+				{coverImage && <img width="720" height="420" class="hero-image element" loading="lazy" src={coverImage} alt={alt} />}
 				{heroImage && <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt={alt} />}
-				<p class="publish-date">{publishDate}</p>
-				<h1 class="title">{title}</h1>
+				<p class="publish-date element">{publishDate}</p>
+				<h1 class="title element">{title}</h1>
 				<Author name={author} href={authorURL} />
 			</header>
 			<main>
@@ -27,6 +29,35 @@ const { title, author, authorURL, publishDate, heroImage, alt } = Astro.props as
 			</main>
 		</div>
 	</article>
+	<!-- <script is:inline>
+		let chooseElement;
+	
+		const move = function(e) {
+			const elements = document.querySelectorAll(".element")
+	
+			elements.forEach(element => {
+				const e = element as HTMLElement; // Cast to HTMLElement
+				e.addEventListener("mousedown", () => {
+					e.style.position = "absolute"
+					chooseElement = e
+	
+					document.onmousemove = (event) => {
+						let x = event.pageX
+						let y = event.pageY
+	
+						chooseElement.style.left = x - 50 + 'px'
+						chooseElement.style.top = y - 50 + 'px'
+	
+						console.log(chooseElement);
+					}
+				})
+			})
+			document.onmouseup = function (event) {
+				chooseElement = null
+			}
+		}
+	
+	</script> -->
 </div>
 
 <style>
