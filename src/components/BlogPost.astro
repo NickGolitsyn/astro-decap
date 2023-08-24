@@ -12,6 +12,32 @@ export interface Props {
 }
 
 const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
+
+function getRussianMonth(englishMonth) {
+  const months = {
+    "Jan": "Янв",
+    "Feb": "Фев",
+    "Mar": "Мар",
+    "Apr": "Апр",
+    "May": "Май",
+    "Jun": "Июн",
+    "Jul": "Июл",
+    "Aug": "Авг",
+    "Sep": "Сен",
+    "Oct": "Окт",
+    "Nov": "Ноя",
+    "Dec": "Дек"
+  };
+
+  return months[englishMonth];
+}
+
+const parts = publishDate.split(" ");
+const day = parts[0];
+const month = getRussianMonth(parts[1]);
+const year = parts[2];
+
+const russianDate = `${day} ${month} ${year}`;
 ---
 
 <div class="layout container select-none">
@@ -19,12 +45,9 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 		<div>
 			<header>
 				{coverImage && <img width="720" height="420" class="hero-image element" loading="lazy" src={coverImage} alt={alt} />}
-				<p class="publish-date element">{publishDate}</p>
+				<p class="publish-date element">{russianDate}</p>
 				<h1 class="title element">{title}</h1>
-				<!-- <Author name={author} href={authorURL} /> -->
-				<div class="author element">
-					<p><a href={authorURL}>{author}</a></p>
-				</div>
+				<Author name={author} href={authorURL} />
 			</header>
 			<main class="element">
 				<slot />
@@ -71,9 +94,6 @@ const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = As
 </script>
 
 <style>
-	.author {
-		margin-bottom: 0.75rem;
-	}
 	.hero-image {
 		width: 70vw;
 		aspect-ratio: 2/1;

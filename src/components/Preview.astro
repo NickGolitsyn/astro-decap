@@ -33,7 +33,6 @@ const russianDate = `${day} ${month} ${year}`;
 ---
 
 <article class="post-preview">
-	{post.frontmatter.coverImage && <img width="720" height="420" class="hero-image" loading="lazy" src={post.frontmatter.coverImage} alt='cover' />}
 	<header>
 		<p class="publish-date">{russianDate}</p>
 		<a href={post.url}><h1 class="title">{post.frontmatter.title}</h1></a>
@@ -43,23 +42,6 @@ const russianDate = `${day} ${month} ${year}`;
 </article>
 
 <style>
-	.hero-image {
-		width: 50vw;
-		height: 280px;
-		object-fit: cover;
-		object-position: center;
-		margin-top: 2rem;
-		margin-bottom: 4rem;
-		max-width: 380px;
-	}
-
-	@media (max-width: 50em) {
-		.hero-image {
-			height: 260px;
-			margin-top: 0;
-			margin-bottom: 2rem;
-		}
-	}
 	.content :global(main > * + *) {
 		margin-top: 1rem;
 	}
@@ -67,6 +49,7 @@ const russianDate = `${day} ${month} ${year}`;
 	.post-preview {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
+		border-bottom: 4px solid var(--theme-divider);
 	}
 
 	header {

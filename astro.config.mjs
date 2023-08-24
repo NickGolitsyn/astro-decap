@@ -71,16 +71,52 @@ export default defineConfig({
       }, {
         name: 'settings',
         label: 'Settings',
-        label_singular: 'Setting',
-        folder: 'src/pages/settings',
+        files: [
+          {
+            label: 'Global Settings',
+            name: 'global',
+            file: 'src/pages/settings/global.json',
+            fields: [
+              {
+                label: 'Title',
+                name: 'title',
+                widget: 'string'
+              },
+              {
+                label: 'Main Image',
+                name: 'mainImage',
+                widget: 'image'
+              }
+            ]
+          }
+        ]
+      }, {
+        name: 'categories',
+        label: 'Categories',
+        label_singular: 'Category',
+        folder: 'src/pages/categories',
         create: true,
         delete: true,
-        fields: [{
-          name: 'mainImage',
-          widget: 'image',
-          label: 'Main Image',
-        }]
-      }],
+        fields: [
+          {
+            name: 'title',
+            widget: 'string',
+            label: 'Title'
+          },
+          {
+            name: 'select_stories',
+            label: 'Select Stories',
+            label_singular: 'Select Story',
+            widget: 'relation',
+            multiple: true,
+            collection: 'posts', // Specify the collection to relate to (posts)
+            search_fields: ['title'], // Search posts by their title
+            value_field: 'title', // Use the title as the value
+            display_fields: ['title'] // Display the title in the select box
+          }
+        ]
+      }
+      ],
     },
     previewStyles: ['/src/styles/blog.css']
   }), tailwind()]

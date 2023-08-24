@@ -1,0 +1,116 @@
+---
+import BlogPostPreview from './BlogPostPreview.astro';
+
+export interface Props {
+	post: any;
+	allPosts: any[];
+}
+
+const { post, allPosts } = Astro.props;
+
+// function getRussianMonth(englishMonth) {
+//   const months = {
+//     "Jan": "Янв",
+//     "Feb": "Фев",
+//     "Mar": "Мар",
+//     "Apr": "Апр",
+//     "May": "Май",
+//     "Jun": "Июн",
+//     "Jul": "Июл",
+//     "Aug": "Авг",
+//     "Sep": "Сен",
+//     "Oct": "Окт",
+//     "Nov": "Ноя",
+//     "Dec": "Дек"
+//   };
+
+//   return months[englishMonth];
+// }
+
+// const parts = post.frontmatter.publishDate.split(" ");
+// const day = parts[0];
+// const month = getRussianMonth(parts[1]);
+// const year = parts[2];
+
+// const russianDate = `${day} ${month} ${year}`;
+---
+
+<article class="post-preview">
+	<header class="flex flex-row justify-between">
+		<h1 class="cat-title">{post.frontmatter.title}</h1>
+		<div class="flex">
+			<div id="scrollBack" class="select-none">
+				<span class="material-symbols-outlined">arrow_back</span>
+			</div>
+			<div id="scrollForward" class="select-none">
+				<span class="material-symbols-outlined">arrow_forward</span>
+			</div>
+		</div>
+	</header>
+	
+	<section aria-label="Blog post list" class="flex items-baseline overflow-scroll gap-3" id="postList">
+    {allPosts
+      .filter((p) => post.frontmatter.select_stories.includes(p.frontmatter.title))
+      .map((p) => <BlogPostPreview post={p} />)}
+  </section>
+</article>
+
+<style>
+	#postList {
+    scroll-behavior: smooth; /* Enable smooth scrolling behavior */
+  }
+	.cat-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--theme-text);
+	}
+	.content :global(main > * + *) {
+		margin-top: 1rem;
+	}
+
+	.post-preview {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	header {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-bottom: 2rem;
+		text-align: left;
+	}
+
+	.title,
+	.author,
+	.publish-date {
+		margin: 0;
+	}
+
+	.publish-date,
+	.author {
+		font-size: 1.25rem;
+		color: var(--theme-text-lighter);
+	}
+
+	.title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--theme-text);
+	}
+</style>
+
+<script>
+	const scrollBackButton = document.getElementById('scrollBack');
+  const scrollForwardButton = document.getElementById('scrollForward');
+  const postList = document.getElementById('postList');
+
+  scrollBackButton.addEventListener('click', () => {
+    postList.scrollLeft -= 400; // Scroll back 50px
+  });
+
+  scrollForwardButton.addEventListener('click', () => {
+    postList.scrollLeft += 400; // Scroll forward 50px
+  });
+</script>
