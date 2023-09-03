@@ -10,8 +10,8 @@ export interface Props {
 	coverImage: string;
 	alt: string;
 }
-
 const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
+
 
 function getRussianMonth(englishMonth) {
   const months = {
@@ -73,8 +73,6 @@ const russianDate = `${day} ${month} ${year}`;
 
 				chooseElement.style.left = x + "px";
 				chooseElement.style.top = y + "px";
-
-				console.log(chooseElement);
 			}
 		};
 	};

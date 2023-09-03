@@ -1,0 +1,104 @@
+---
+import BlogPostPreview from './BlogPostPreview.astro';
+import CategoryPreview from './CategoryPreview.astro';
+
+export interface Props {
+	post: any;
+  allCategories: any[];
+	allPosts: any[];
+}
+
+const { post, allCategories, allPosts } = Astro.props;
+
+const originalDate = post.frontmatter.publishDate;
+const [month, day] = originalDate.split(' ');
+const reformattedDate = `${month}/${day}`;
+
+function escapeHTML(html) {
+  return html.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;');
+}
+---
+
+<article class="post-preview">
+	<header class="flex">
+    <p class=" font-medium">номер {post.frontmatter.issueNumber} - {reformattedDate}</p>
+    <h1 class="cat-title">{post.frontmatter.title}</h1>
+	</header>
+
+  <section class="flex gap-5">
+    <div class="w-1/2">
+      <img width="720" height="420" class="hero-image mx-auto" loading="lazy" src={post.frontmatter.coverImage} />
+    </div>
+    <div class="w-1/2">
+      <!-- {post.frontmatter.descriptionMd && <p>{post.frontmatter.descriptionMd}</p>} -->
+      <p>{escapeHTML(post.frontmatter.description)}</p>
+    </div>
+  </section>
+  
+	
+	<section aria-label="Blog post list" class="mt-20">
+    {allCategories
+      .filter((p) => post.frontmatter.select_categories.includes(p.frontmatter.title))
+      .map((p) => <CategoryPreview post={p} allPosts={allPosts} />)}
+  </section>
+</article>
+
+<style>
+	#postList {
+    scroll-behavior: smooth;
+  }
+	.cat-title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--theme-text);
+	}
+	.content :global(main > * + *) {
+		margin-top: 1rem;
+	}
+
+	.post-preview {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	header {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-bottom: 2rem;
+		text-align: left;
+	}
+
+	.title,
+	.author,
+	.publish-date {
+		margin: 0;
+	}
+
+	.publish-date,
+	.author {
+		font-size: 1.25rem;
+		color: var(--theme-text-lighter);
+	}
+
+	.title {
+		font-size: 2.25rem;
+		font-weight: 700;
+		color: var(--theme-text);
+	}
+</style>
+
+<script>
+	const scrollBackButton = document.getElementById('scrollBack');
+  const scrollForwardButton = document.getElementById('scrollForward');
+  const postList = document.getElementById('postList');
+
+  scrollBackButton.addEventListener('click', () => {
+    postList.scrollLeft -= 400; // Scroll back 50px
+  });
+
+  scrollForwardButton.addEventListener('click', () => {
+    postList.scrollLeft += 400; // Scroll forward 50px
+  });
+</script>

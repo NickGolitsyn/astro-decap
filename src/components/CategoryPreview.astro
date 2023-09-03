@@ -34,26 +34,27 @@ const { post, allPosts } = Astro.props;
 
 // const russianDate = `${day} ${month} ${year}`;
 ---
-
-<article class="post-preview">
-	<header class="flex flex-row justify-between">
-		<h1 class="cat-title">{post.frontmatter.title}</h1>
-		<div class="flex">
-			<div id="scrollBack" class="select-none">
-				<span class="material-symbols-outlined">arrow_back</span>
+<section>
+	<article class="post-preview">
+		<header class="flex flex-row justify-between items-end">
+			<h1 class="cat-title">{post.frontmatter.title}</h1>
+			<div class="flex">
+				<div id="scrollBack" class="select-none">
+					<span class="material-symbols-outlined">arrow_back</span>
+				</div>
+				<div id="scrollForward" class="select-none">
+					<span class="material-symbols-outlined">arrow_forward</span>
+				</div>
 			</div>
-			<div id="scrollForward" class="select-none">
-				<span class="material-symbols-outlined">arrow_forward</span>
-			</div>
-		</div>
-	</header>
-	
-	<section aria-label="Blog post list" class="flex items-baseline overflow-scroll gap-3" id="postList">
-    {allPosts
-      .filter((p) => post.frontmatter.select_stories.includes(p.frontmatter.title))
-      .map((p) => <BlogPostPreview post={p} />)}
-  </section>
-</article>
+		</header>
+		
+		<section aria-label="Blog post list" class="flex items-baseline overflow-scroll gap-3" id="postList">
+			{allPosts
+				.filter((p) => post.frontmatter.select_stories.includes(p.frontmatter.title))
+				.map((p) => <BlogPostPreview post={p} />)}
+		</section>
+	</article>
+</section>
 
 <style>
 	#postList {

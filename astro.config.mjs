@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import NetlifyCMS from 'astro-netlify-cms';
+import tailwind from "@astrojs/tailwind";
+
+// import react from "@astrojs/react";
 
 // https://astro.build/config
-import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,20 +21,100 @@ export default defineConfig({
       public_folder: '/assets/blog',
       // Configure the content collections
       collections: [{
+        name: 'settings',
+        label: 'Настройки',
+        files: [{
+          label: 'Global Settings',
+          name: 'global',
+          file: 'src/pages/settings/global.json',
+          fields: [{
+            label: 'Title',
+            name: 'title',
+            widget: 'string'
+          }, {
+            label: 'Main Image',
+            name: 'mainImage',
+            widget: 'image'
+          }]
+        }]
+      }, {
+        name: "issues",
+        label: "Номера",
+        folder: "src/pages/issues",
+        create: true,
+        delete: true,
+        fields: [{
+          name: "issueNumber",
+          widget: "number",
+          label: "Номер №"
+        }, {
+          name: "title",
+          widget: "string",
+          label: "Название номера"
+        }, {
+          name: 'coverImage',
+          widget: 'image',
+          label: 'Обложка номера'
+        }, {
+          name: "description",
+          widget: "text",
+          label: "Описание номера"
+        }, {
+          name: "body",
+          widget: "markdown",
+          label: "Описание номера",
+          required: false
+        }, {
+          name: 'publishDate',
+          widget: 'datetime',
+          format: 'MM YY',
+          date_format: 'MM YY',
+          label: 'Дата'
+        }, {
+          name: "select_categories",
+          label: "Категории",
+          widget: "relation",
+          multiple: true,
+          collection: "categories",
+          search_fields: ["title"],
+          value_field: "title",
+          display_fields: ["title"]
+        }]
+      }, {
+        name: "categories",
+        label: "Категории",
+        folder: "src/pages/categories",
+        create: true,
+        delete: true,
+        fields: [{
+          name: "title",
+          widget: "string",
+          label: "Название категории"
+        }, {
+          name: "select_stories",
+          label: "Посты",
+          widget: "relation",
+          multiple: true,
+          collection: "posts",
+          search_fields: ["title"],
+          value_field: "title",
+          display_fields: ["title"]
+        }]
+      }, {
         name: 'posts',
-        label: 'Blog Posts',
-        label_singular: 'Blog Post',
+        label: 'Посты',
+        label_singular: 'Пост',
         folder: 'src/pages/posts',
         create: true,
         delete: true,
         fields: [{
           name: 'title',
           widget: 'string',
-          label: 'Post Title'
+          label: 'Название поста'
         }, {
           name: 'coverImage',
           widget: 'image',
-          label: 'Cover Image',
+          label: 'Обложка поста',
           required: false
         }, {
           name: 'publishDate',
@@ -39,26 +122,26 @@ export default defineConfig({
           format: 'DD MMM YYYY',
           date_format: 'DD MMM YYYY',
           time_format: false,
-          label: 'Publish Date'
+          label: 'Дата'
         }, {
           name: 'author',
           widget: 'string',
-          label: 'Author Name',
+          label: 'Автор',
           required: false
         }, {
           name: 'authorURL',
           widget: 'string',
-          label: 'Author URL',
+          label: 'Автор URL',
           required: false
         }, {
           name: 'description',
           widget: 'string',
-          label: 'Description',
+          label: 'Описание',
           required: false
         }, {
           name: 'body',
           widget: 'markdown',
-          label: 'Post Body'
+          label: 'Материал'
         }, {
           name: 'layout',
           widget: 'select',
@@ -68,56 +151,8 @@ export default defineConfig({
             value: '../../layouts/BlogPostLayout.astro'
           }]
         }]
-      }, {
-        name: 'settings',
-        label: 'Settings',
-        files: [
-          {
-            label: 'Global Settings',
-            name: 'global',
-            file: 'src/pages/settings/global.json',
-            fields: [
-              {
-                label: 'Title',
-                name: 'title',
-                widget: 'string'
-              },
-              {
-                label: 'Main Image',
-                name: 'mainImage',
-                widget: 'image'
-              }
-            ]
-          }
-        ]
-      }, {
-        name: 'categories',
-        label: 'Categories',
-        label_singular: 'Category',
-        folder: 'src/pages/categories',
-        create: true,
-        delete: true,
-        fields: [
-          {
-            name: 'title',
-            widget: 'string',
-            label: 'Title'
-          },
-          {
-            name: 'select_stories',
-            label: 'Select Stories',
-            label_singular: 'Select Story',
-            widget: 'relation',
-            multiple: true,
-            collection: 'posts', // Specify the collection to relate to (posts)
-            search_fields: ['title'], // Search posts by their title
-            value_field: 'title', // Use the title as the value
-            display_fields: ['title'] // Display the title in the select box
-          }
-        ]
-      }
-      ],
-    },
-    previewStyles: ['/src/styles/blog.css']
-  }), tailwind()]
+      }],
+      previewStyles: ['/src/styles/blog.css']
+    }
+  }), tailwind(), react()]
 });
