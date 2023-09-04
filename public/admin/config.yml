@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: NickGolitsyn/astro-decap
+  branch: latest
+  base_url: https://astro-decap.pages.dev/
+  auth_endpoint: /api/auth
+media_folder: assets/blog
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "src/pages/posts"
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "title", name: "title", widget: "string" }
+      - { label: "coverImage", name: "coverImage", widget: "image" }
+      - { label: "publishDate", name: "publishDate", widget: "datetime" }
+      - { label: "author", name: "author", widget: "string" }
+      - { label: "description", name: "description", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
