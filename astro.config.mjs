@@ -13,8 +13,10 @@ export default defineConfig({
     config: {
       // Use Netlify’s “Git Gateway” authentication and target our default branch
       backend: {
-        name: 'git-gateway',
-        branch: 'latest'
+        // name: 'git-gateway',
+        name: 'github',
+        repo: 'nickgolitsyn/astro-decap',
+        branch: 'latest',
       },
       // Configure where our media assets are stored & served from
       media_folder: 'public/assets/blog',
