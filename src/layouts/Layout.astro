@@ -4,6 +4,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
 import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav';
 export interface Props {
 	title: string;
   description: string;
@@ -21,7 +22,8 @@ const { title, description, permalink } = Astro.props;
 	<body>
 		<!-- <Nav client:load /> -->
 		<!-- <div class="mb-24"></div> -->
-    <BlogHeader />
+    <Nav client:idle />
+    <!-- <BlogHeader /> -->
     <div class="wrapper">
       <slot />
     </div>

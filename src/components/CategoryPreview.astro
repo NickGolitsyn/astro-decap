@@ -37,7 +37,7 @@ const { post, allPosts } = Astro.props;
 <section>
 	<article class="post-preview">
 		<header class="flex flex-row justify-between items-end">
-			<h1 class="cat-title">{post.frontmatter.title}</h1>
+			<h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
 			<div class="flex">
 				<div id="scrollBack" class="select-none">
 					<span class="material-symbols-outlined">arrow_back</span>
@@ -61,7 +61,6 @@ const { post, allPosts } = Astro.props;
     scroll-behavior: smooth; /* Enable smooth scrolling behavior */
   }
 	.cat-title {
-		font-size: 2.25rem;
 		font-weight: 700;
 		color: var(--theme-text);
 	}

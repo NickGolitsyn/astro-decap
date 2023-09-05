@@ -22,16 +22,16 @@ function escapeHTML(html) {
 <article class="post-preview">
 	<header class="flex">
     <p class=" font-medium">номер {post.frontmatter.issueNumber} - {reformattedDate}</p>
-    <h1 class="cat-title">{post.frontmatter.title}</h1>
+    <h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
 	</header>
 
-  <section class="flex gap-5">
-    <div class="w-1/2">
+  <section class="flex flex-col sm:flex-row gap-5">
+    <div class="sm:w-1/2">
       <img width="720" height="420" class="hero-image mx-auto" loading="lazy" src={post.frontmatter.coverImage} />
     </div>
-    <div class="w-1/2">
+    <div class="sm:w-1/2">
       <!-- {post.frontmatter.descriptionMd && <p>{post.frontmatter.descriptionMd}</p>} -->
-      <p>{escapeHTML(post.frontmatter.description)}</p>
+      <p class="text-xs md:text-base">{escapeHTML(post.frontmatter.description)}</p>
     </div>
   </section>
   
@@ -48,7 +48,6 @@ function escapeHTML(html) {
     scroll-behavior: smooth;
   }
 	.cat-title {
-		font-size: 2.25rem;
 		font-weight: 700;
 		color: var(--theme-text);
 	}
