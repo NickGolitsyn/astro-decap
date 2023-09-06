@@ -56,6 +56,20 @@ const { post, allPosts } = Astro.props;
 	</article>
 </section>
 
+<script>
+	const scrollBackButton = document.getElementById('scrollBack');
+  const scrollForwardButton = document.getElementById('scrollForward');
+  const postList = document.getElementById('postList');
+
+  scrollBackButton.addEventListener('click', () => {
+    postList.scrollLeft -= 400; // Scroll back 50px
+  });
+
+  scrollForwardButton.addEventListener('click', () => {
+    postList.scrollLeft += 400; // Scroll forward 50px
+  });
+</script>
+
 <style>
 	#postList {
     scroll-behavior: smooth; /* Enable smooth scrolling behavior */
@@ -100,17 +114,3 @@ const { post, allPosts } = Astro.props;
 		color: var(--theme-text);
 	}
 </style>
-
-<script>
-	const scrollBackButton = document.getElementById('scrollBack');
-  const scrollForwardButton = document.getElementById('scrollForward');
-  const postList = document.getElementById('postList');
-
-  scrollBackButton.addEventListener('click', () => {
-    postList.scrollLeft -= 400; // Scroll back 50px
-  });
-
-  scrollForwardButton.addEventListener('click', () => {
-    postList.scrollLeft += 400; // Scroll forward 50px
-  });
-</script>

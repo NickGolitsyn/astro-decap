@@ -25,9 +25,9 @@ const itemMotionDesktop = {
   hidden: { opacity: 1, x: 0 },
 }
 const navLinks = [
-  { name: "автор_ки", href: "/", id: 1 },
-  { name: "все номера", href: "/projects", id: 2 },
-  { name: "книжная серия", href: "/contact", id: 3 },
+  { name: "автор_ки", href: "/authors", id: 1 },
+  { name: "все номера", href: "/issues", id: 2 },
+  { name: "книжная серия", href: "/book-series", id: 3 },
   { name: "контакты", href: "/contact", id: 4 },
 ]
 

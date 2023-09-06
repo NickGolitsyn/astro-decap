@@ -1,5 +1,4 @@
 ---
-import BlogPostPreview from './BlogPostPreview.astro';
 import CategoryPreview from './CategoryPreview.astro';
 
 export interface Props {
@@ -30,7 +29,6 @@ function escapeHTML(html) {
       <img width="720" height="420" class="hero-image mx-auto" loading="lazy" src={post.frontmatter.coverImage} />
     </div>
     <div class="sm:w-1/2">
-      <!-- {post.frontmatter.descriptionMd && <p>{post.frontmatter.descriptionMd}</p>} -->
       <p class="text-xs md:text-base">{escapeHTML(post.frontmatter.description)}</p>
     </div>
   </section>
@@ -87,17 +85,3 @@ function escapeHTML(html) {
 		color: var(--theme-text);
 	}
 </style>
-
-<script>
-	const scrollBackButton = document.getElementById('scrollBack');
-  const scrollForwardButton = document.getElementById('scrollForward');
-  const postList = document.getElementById('postList');
-
-  scrollBackButton.addEventListener('click', () => {
-    postList.scrollLeft -= 400; // Scroll back 50px
-  });
-
-  scrollForwardButton.addEventListener('click', () => {
-    postList.scrollLeft += 400; // Scroll forward 50px
-  });
-</script>

@@ -4,54 +4,36 @@ import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
 import CategoryPreview from '../components/CategoryPreview.astro';
-import IssuePreview from '../components/IssuePreview.astro';
+import IssuePreview from '../components/IssuePreview';
+import IssueSelection from '../components/IssueSelection';
 import { SITE } from '../config';
 import Layout from '../layouts/Layout.astro';
-import { useState } from 'react';
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
+
 let { title } = SITE;
 let description = 'Химеры -.';
 let permalink = 'https://nickgolitsyn.com/';
 
-// Data Fetching: List all Markdown posts in the repo.
 let categoryPosts = await Astro.glob('./categories/*.md');
 let issuePosts = await Astro.glob('./issues/*.md');
 
 
 let allPosts = await Astro.glob('./posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 <Layout {title} {description} {permalink}>
 	<main class="content">
     <section>
       <img width="720" height="420" class="hero-image mx-auto my-8" loading="lazy" src='/assets/cover.jpg' />
     </section>
-		<!-- <section class="intro">
-			<h1 class="latest">{title}</h1>
-			<p>{description}</p>
-		</section> -->
-    <!-- {issuePosts.map((p) => <i class="bi bi-circle-fill text-gray-500"></i>)} -->
-    <!-- {issuePosts.map((p, index) => (
-      <i class="bi bi-circle-fill text-gray-500" onClick={() => setActiveIndex(index)}></i>
-    ))} -->
+    <!-- {issuePosts.map((p) => <i class="bi bi-circle-fill text-gray-500"></i>)}
     <section aria-label="Blog post list">
       <IssuePreview post={issuePosts[0]} allCategories={categoryPosts} allPosts={allPosts} />
-		</section>
-    <!-- <section aria-label="Blog post list">
-			{categoryPosts.map((p) => <CategoryPreview post={p} allPosts={allPosts} />)}
 		</section> -->
-		<!-- <section aria-label="Blog post list">
-			{allPosts.map((p) => <BlogPostPreview post={p} />)}
-		</section> -->
+    <!-- <IssueSelection client:only="react" issuePosts={issuePosts} categoryPosts={categoryPosts} allPosts={allPosts} /> -->
+    <IssuePreview client:only="react" posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
+    <!-- <IssueSelection /> -->
 	</main>
 </Layout>
-
 <style>
 	header {
     width: 100%;
