@@ -1,21 +1,12 @@
 ---
-// Component Imports
-import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/BlogHeader.astro';
-import BlogPostPreview from '../components/BlogPostPreview.astro';
-import CategoryPreview from '../components/CategoryPreview.astro';
 import IssuePreview from '../components/IssuePreview';
-import IssueSelection from '../components/IssueSelection';
 import { SITE } from '../config';
 import Layout from '../layouts/Layout.astro';
 
-let { title } = SITE;
-let description = 'Химеры -.';
-let permalink = 'https://nickgolitsyn.com/';
+let { title, description, permalink } = SITE;
 
 let categoryPosts = await Astro.glob('./categories/*.md');
 let issuePosts = await Astro.glob('./issues/*.md');
-
 
 let allPosts = await Astro.glob('./posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());

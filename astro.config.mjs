@@ -2,6 +2,10 @@ import { defineConfig } from 'astro/config';
 import NetlifyCMS from 'astro-netlify-cms';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+// import { Widget as IdWidget } from '@ncwidgets/id'
+
+// NetlifyCMS.registerWidget(IdWidget)
+// NetlifyCMS.init()
 
 // https://astro.build/config
 export default defineConfig({
@@ -149,6 +153,28 @@ export default defineConfig({
             value: '../../layouts/BlogPostLayout.astro'
           }]
         }]
+      }, {
+        name: 'authors',
+        label: 'Авторы',
+        label_singular: 'Автор',
+        folder: 'src/pages/authors',
+        create: true,
+        delete: true,
+        fields: [{
+          name: 'author_name',
+          label: 'Имя автора',
+          widget: 'string',
+          required: true,
+        }, 
+        // {
+        //   label: 'ID',
+        //   name: 'id',
+        //   widget: 'ncw-id',
+        //   prefix: 'author',
+        //   timestamp: true,
+        //   hint: 'This widget generate an unique read-only id'
+        // }
+      ]
       }],
       previewStyles: ['/src/styles/blog.css']
     }

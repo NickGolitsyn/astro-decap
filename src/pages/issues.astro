@@ -1,0 +1,13 @@
+---
+import { SITE } from "../config";
+import Layout from "../layouts/Layout.astro";
+
+let { description, permalink } = SITE;
+
+---
+
+<Layout title="Авторы" {description} {permalink}>
+  <main class="content">
+    <h1 class="text-4xl font-bold">все номера</h1>
+  </main>
+</Layout>

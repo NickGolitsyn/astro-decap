@@ -1,14 +1,18 @@
 ---
+import { SITE } from "../config";
 import Layout from "../layouts/Layout.astro";
 
-let description = 'Химеры -.';
-let permalink = 'https://nickgolitsyn.com/';
+let { description, permalink } = SITE;
 
+let allAuthors = await Astro.glob('./authors/*.md');
 ---
 
 <Layout title="Авторы" {description} {permalink}>
   <main class="content">
     <h1 class="text-4xl font-bold">автор_ки</h1>
+    {allAuthors.map((author) => (
+      <h1>{author.frontmatter.author_name}</h1>
+    ))}
   </main>
 </Layout>
 
