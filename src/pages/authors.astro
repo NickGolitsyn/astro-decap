@@ -7,10 +7,12 @@ let { description, permalink } = SITE;
 let allAuthors = await Astro.glob('./authors/*.md');
 ---
 
-<Layout title="Авторы" {description} {permalink}>
-  <main class="content">
+<Layout title="автор_ки" {description} {permalink}>
+  <header class="mb-10 mt-5">
     <h1 class="text-4xl font-bold">автор_ки</h1>
-    <section class="flex flex-wrap gap-y-5 gap-x-10 text-xl mt-10">
+  </header>
+  <main class="content">
+    <section class="flex flex-wrap gap-y-5 gap-x-10 text-xl">
       {allAuthors.map((author) => (
         <h2><a href={author.url}>{author.frontmatter.title}</a></h2>
       ))}

@@ -3,11 +3,11 @@ import AuthorPage from '../components/AuthorPage.astro';
 import Layout from './Layout.astro';
 
 const { content } = Astro.props;
-const { title, description, publishDate, author, authorURL, heroImage, coverImage, permalink, alt } = content;
+const { title, avatar, description, permalink } = content;
 ---
 
 <Layout {title} {description} {permalink}>
-	<AuthorPage {title}>
+	<AuthorPage {title} {avatar} {description}>
 		<slot />
 	</AuthorPage>
 </Layout>

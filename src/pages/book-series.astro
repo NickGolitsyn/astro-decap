@@ -1,0 +1,13 @@
+---
+import { SITE } from "../config";
+import Layout from "../layouts/Layout.astro";
+
+let { description, permalink } = SITE;
+
+---
+
+<Layout title="книжная серия" {description} {permalink}>
+  <header class="mb-10 mt-5">
+    <h1 class="text-4xl font-bold">книжная серия</h1>
+  </header>
+</Layout>

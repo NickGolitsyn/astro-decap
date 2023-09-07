@@ -3,11 +3,49 @@ import { SITE } from "../config";
 import Layout from "../layouts/Layout.astro";
 
 let { description, permalink } = SITE;
+let issuePosts = await Astro.glob('./issues/*.md');
 
+// const originalDate = post.frontmatter.publishDate;
+// const [month, day] = originalDate.split(' ');
+// const reformattedDate = `${month}/${day}`;
+
+function escapeHTML(html) {
+  return html.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;');
+}
 ---
 
-<Layout title="Авторы" {description} {permalink}>
-  <main class="content">
+<Layout title="все номера" {description} {permalink}>
+  <header class="mb-10 mt-5">
     <h1 class="text-4xl font-bold">все номера</h1>
+  </header>
+  <main>
+    {issuePosts.map((post) => (
+      <article class="post-preview">
+        <section class="flex flex-col">
+          <p class=" font-medium">номер {post.frontmatter.issueNumber} - </p>
+          <h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
+        </section>
+        <section class="flex flex-col sm:flex-row gap-5">
+          <div class="sm:w-1/2">
+            <img width="720" height="420" class="hero-image mx-auto" loading="lazy" src={post.frontmatter.coverImage} />
+          </div>
+          <div class="sm:w-1/2">
+            <p class="text-xs md:text-base">{escapeHTML(post.frontmatter.description)}</p>
+          </div>
+        </section>
+      </article>
+    ))}
   </main>
 </Layout>
+
+
+<style>
+	.cat-title {
+		font-weight: 700;
+		color: var(--theme-text);
+	}
+	.post-preview {
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+	}
+</style>

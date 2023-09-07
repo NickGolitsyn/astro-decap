@@ -28,7 +28,7 @@ const navLinks = [
   { name: "автор_ки", href: "/authors", id: 1 },
   { name: "все номера", href: "/issues", id: 2 },
   { name: "книжная серия", href: "/book-series", id: 3 },
-  { name: "контакты", href: "/contact", id: 4 },
+  { name: "контакты", href: "/contacts", id: 4 },
 ]
 
 const NavLinks = ({
@@ -77,7 +77,7 @@ export default function Nav() {
           variants={navMotion}
           animate="visible"
           initial="hidden"
-          className="fixed left-0 top-0 z-40 flex h-screen w-full flex-col items-center justify-center bg-white"
+          className="fixed left-0 top-0 z-40 flex h-screen w-full flex-col items-center justify-center bg-white md:hidden"
         >
           <NavLinks
             className="flex flex-col gap-14"

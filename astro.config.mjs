@@ -157,6 +157,16 @@ export default defineConfig({
           label: 'Имя автора',
           required: true,
         }, {
+          name: 'avatar',
+          widget: 'image',
+          label: 'Аватарка автора',
+          required: false
+        }, {
+          name: 'description',
+          widget: 'text',
+          label: 'Описание',
+          required: false
+        }, {
           name: 'layout',
           widget: 'hidden',
           default: '../../layouts/AuthorLayout.astro',
