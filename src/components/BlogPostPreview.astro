@@ -34,12 +34,12 @@ const russianDate = `${day} ${month} ${year}`;
 
 <article class="post-preview">
 	{post.frontmatter.coverImage && <img width="720" height="420" class="hero-image" loading="lazy" src={post.frontmatter.coverImage} alt='cover' />}
-	<header>
-		<p class="publish-date">{russianDate}</p>
+	<div>
 		<a href={post.url}><h1 class="title text-xl sm:text-4xl">{post.frontmatter.title}</h1></a>
-	</header>
-	<p>{post.frontmatter.description}</p>
-	<a href={post.url}>Прочитать</a>
+		{post.frontmatter.select_author.map((e) => (
+			<p>{e}</p>
+		))}
+	</div>
 </article>
 
 <style>
@@ -49,7 +49,7 @@ const russianDate = `${day} ${month} ${year}`;
 		object-fit: cover;
 		object-position: center;
 		margin-top: 2rem;
-		margin-bottom: 4rem;
+		margin-bottom: 1rem;
 		max-width: 380px;
 	}
 
@@ -57,12 +57,11 @@ const russianDate = `${day} ${month} ${year}`;
 		.hero-image {
 			height: 260px;
 			margin-top: 0;
-			margin-bottom: 2rem;
 		}
 	}
-	.content :global(main > * + *) {
+	/* .content :global(main > * + *) {
 		margin-top: 1rem;
-	}
+	} */
 
 	.post-preview {
 		padding-bottom: 2rem;

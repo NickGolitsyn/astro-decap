@@ -28,44 +28,9 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
       <style>
         {`
           #postList {
-            scroll-behavior: smooth; /* Enable smooth scrolling behavior */
+            scroll-behavior: smooth; 
           }
           .cat-title {
-            font-weight: 700;
-            color: var(--theme-text);
-          }
-          .content :global(main > * + *) {
-            margin-top: 1rem;
-          }
-
-          .post-preview {
-            padding-bottom: 2rem;
-            margin-bottom: 2rem;
-          }
-
-          header {
-            align-items: flex-start;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-bottom: 2rem;
-            text-align: left;
-          }
-
-          .title,
-          .author,
-          .publish-date {
-            margin: 0;
-          }
-
-          .publish-date,
-          .author {
-            font-size: 1.25rem;
-            color: var(--theme-text-lighter);
-          }
-
-          .title {
-            font-size: 2.25rem;
             font-weight: 700;
             color: var(--theme-text);
           }

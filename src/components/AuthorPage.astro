@@ -1,0 +1,70 @@
+---
+import BlogPostPreview from './BlogPostPreview.astro';
+export interface Props {
+	title: string;
+}
+const { title } = Astro.props as Props;
+let allPosts = await Astro.glob('../pages/posts/*.md');
+const authorPosts = allPosts.filter((post) => {
+	const postAuthors = post.frontmatter.select_author;
+	return postAuthors && postAuthors.includes(title);
+});
+---
+
+<div class="layout container">
+	<article class="content">
+		<div>
+			<header>
+				<h1 class="title element">{title}</h1>
+				<!-- <Author name={author} href={authorURL} /> -->
+			</header>
+			<main class="flex flex-wrap gap-3">
+				{authorPosts.map((post, index) => (
+					<BlogPostPreview {post} />
+				))}
+			</main>
+		</div>
+	</article>
+</div>
+
+<style>
+	.content {
+		margin-bottom: 8rem;
+	}
+
+	/* .content :global(main > * + *) {
+		margin-top: 1rem;
+	} */
+
+	.content :global(h2) {
+		margin-top: 4rem;
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+		border-bottom: 4px solid var(--theme-divider);
+	}
+
+	.title,
+	.author,
+	.publish-date {
+		margin: 0;
+	}
+
+	.publish-date,
+	.author {
+		color: var(--theme-text-lighter);
+	}
+
+	.title {
+		font-size: 2.25rem;
+		font-weight: 700;
+	}
+</style>

@@ -1,11 +1,11 @@
 ---
-title: Будущее
 coverImage: /assets/blog/stroczev_4f86e198ef.jpg
+title: Будущее
 publishDate: 24 Aug 2023
-author: Дмитрий Строцев
-authorURL: Дмитрий Строцев
 description: This is the description
 layout: ../../layouts/BlogPostLayout.astro
+select_author:
+  - Виталий Лехциер
 ---
 Testing. COol. 
 

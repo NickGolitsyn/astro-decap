@@ -39,7 +39,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
 		object-fit: cover;
 		object-position: center;
 		margin-top: 2rem;
-		margin-bottom: 4rem;
+		margin-bottom: 1rem;
 		max-width: 380px;
 	}
 
@@ -47,12 +47,11 @@ const PostPreview: React.FC<Props> = ({ post }) => {
 		.blog-image {
 			height: 260px;
 			margin-top: 0;
-			margin-bottom: 2rem;
 		}
 	}
-	.content :global(main > * + *) {
-		margin-top: 1rem;
-	}
+	// .content :global(main > * + *) {
+	// 	margin-top: 1rem;
+	// }
 
 	.post-preview {
 		padding-bottom: 2rem;
@@ -96,13 +95,13 @@ const PostPreview: React.FC<Props> = ({ post }) => {
         />
       )}
       <header>
-        <p className="publish-date">{russianDate}</p>
         <a href={post.url}>
           <h1 className="title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
         </a>
+				{post.frontmatter.select_author.map((e) => (
+					<p>{e}</p>
+				))}
       </header>
-      <p>{post.frontmatter.description}</p>
-      <a href={post.url}>Прочитать</a>
     </article>
   );
 };

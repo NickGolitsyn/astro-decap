@@ -2,26 +2,18 @@ import { defineConfig } from 'astro/config';
 import NetlifyCMS from 'astro-netlify-cms';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-// import { Widget as IdWidget } from '@ncwidgets/id'
-
-// NetlifyCMS.registerWidget(IdWidget)
-// NetlifyCMS.init()
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [NetlifyCMS({
     config: {
-      // Use Netlify’s “Git Gateway” authentication and target our default branch
       backend: {
         name: 'git-gateway',
-        // name: 'github',
-        // repo: 'nickgolitsyn/astro-decap',
         branch: 'latest',
       },
-      // Configure where our media assets are stored & served from
+      logo_url: 'https://codestitch.app/frontend/images/logo.png',
       media_folder: 'public/assets/blog',
       public_folder: '/assets/blog',
-      // Configure the content collections
       collections: [{
         name: 'settings',
         label: 'Настройки',
@@ -126,15 +118,14 @@ export default defineConfig({
           time_format: false,
           label: 'Дата'
         }, {
-          name: 'author',
-          widget: 'string',
-          label: 'Автор',
-          required: false
-        }, {
-          name: 'authorURL',
-          widget: 'string',
-          label: 'Автор URL',
-          required: false
+          name: "select_author",
+          label: "Автор",
+          widget: "relation",
+          multiple: true,
+          collection: "authors",
+          search_fields: ["title"],
+          value_field: "title",
+          display_fields: ["title"]
         }, {
           name: 'description',
           widget: 'string',
@@ -146,12 +137,12 @@ export default defineConfig({
           label: 'Материал'
         }, {
           name: 'layout',
-          widget: 'select',
+          widget: 'hidden',
           default: '../../layouts/BlogPostLayout.astro',
-          options: [{
-            label: 'Blog Post',
-            value: '../../layouts/BlogPostLayout.astro'
-          }]
+          // options: [{
+          //   label: 'Blog Post',
+          //   value: '../../layouts/BlogPostLayout.astro'
+          // }]
         }]
       }, {
         name: 'authors',
@@ -161,19 +152,15 @@ export default defineConfig({
         create: true,
         delete: true,
         fields: [{
-          name: 'author_name',
-          label: 'Имя автора',
+          name: 'title',
           widget: 'string',
+          label: 'Имя автора',
           required: true,
-        }, 
-        // {
-        //   label: 'ID',
-        //   name: 'id',
-        //   widget: 'ncw-id',
-        //   prefix: 'author',
-        //   timestamp: true,
-        //   hint: 'This widget generate an unique read-only id'
-        // }
+        }, {
+          name: 'layout',
+          widget: 'hidden',
+          default: '../../layouts/AuthorLayout.astro',
+        }
       ]
       }],
       previewStyles: ['/src/styles/blog.css']
