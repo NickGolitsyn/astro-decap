@@ -33,7 +33,7 @@ const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
           {posts.map((issuePost, index) => (
             <i
               key={index}
-              className={`bi bi-circle-fill text-neutral-500 opacity-20 ml-3 text-xl ${selectedPostIndex === index ? '!opacity-100' : ''}`}
+              className={`bi text-neutral-400 ml-3 text-xl ${selectedPostIndex === index ? 'bi-circle-fill' : 'bi-circle'}`}
               onClick={() => handleItemClick(index)}
             ></i>
           ))}

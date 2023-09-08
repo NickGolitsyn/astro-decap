@@ -30,60 +30,60 @@ const PostPreview: React.FC<Props> = ({ post }) => {
   const russianDate = `${day} ${month} ${year}`;
 
   return (
-    <article className="post-preview">
+    <article className="post-preview w-80 sm:w-96">
+			<style>{`
+				.blog-image {
+					// width: 50vw;
+					width: 20rem;
+					height: 280px;
+					object-fit: cover;
+					object-position: center;
+					margin-top: 2rem;
+					margin-bottom: 1rem;
+					max-width: 380px;
+				}
 
-<style>{`
-	.blog-image {
-		width: 50vw;
-		height: 280px;
-		object-fit: cover;
-		object-position: center;
-		margin-top: 2rem;
-		margin-bottom: 1rem;
-		max-width: 380px;
-	}
+				@media (max-width: 50em) {
+					.blog-image {
+						height: 260px;
+						margin-top: 0;
+					}
+				}
+				// .content :global(main > * + *) {
+				// 	margin-top: 1rem;
+				// }
 
-	@media (max-width: 50em) {
-		.blog-image {
-			height: 260px;
-			margin-top: 0;
-		}
-	}
-	// .content :global(main > * + *) {
-	// 	margin-top: 1rem;
-	// }
+				.post-preview {
+					padding-bottom: 2rem;
+					margin-bottom: 2rem;
+				}
 
-	.post-preview {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-	}
+				header {
+					align-items: flex-start;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					padding-bottom: 2rem;
+					text-align: left;
+				}
 
-	header {
-		align-items: flex-start;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-bottom: 2rem;
-		text-align: left;
-	}
+				.title,
+				.author,
+				.publish-date {
+					margin: 0;
+				}
 
-	.title,
-	.author,
-	.publish-date {
-		margin: 0;
-	}
+				.publish-date,
+				.author {
+					font-size: 1.25rem;
+					color: var(--theme-text-lighter);
+				}
 
-	.publish-date,
-	.author {
-		font-size: 1.25rem;
-		color: var(--theme-text-lighter);
-	}
-
-	.title {
-		font-weight: 700;
-		color: var(--theme-text);
-	}`}
-</style>
+				.title {
+					font-weight: 700;
+					color: var(--theme-text);
+				}`}
+			</style>
       {post.frontmatter.coverImage && (
         <img
           width="720"
@@ -96,7 +96,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
       )}
       <header>
         <a href={post.url}>
-          <h1 className="title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
+          <h1 className="title text-xl sm:text-2xl">{post.frontmatter.title}</h1>
         </a>
 				{post.frontmatter.select_author.map((e) => (
 					<p>{e}</p>

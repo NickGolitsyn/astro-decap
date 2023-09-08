@@ -67,7 +67,7 @@ export default function Nav() {
         href="/"
         className="z-50"
       >
-        <h1 className="font-bold text-3xl uppercase">{SITE.title}</h1>
+        <h1 className="font-bold text-2xl sm:text-3xl uppercase">{SITE.title}</h1>
       </motion.a>
 
       {/* Nav Items animating in  */}

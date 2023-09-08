@@ -14,11 +14,11 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
 
     if (scrollBackButton && scrollForwardButton && postList) {
       scrollBackButton.addEventListener('click', () => {
-        postList.scrollLeft -= 400; // Scroll back 50px
+        postList.scrollLeft -= 328; // Scroll back 50px
       });
 
       scrollForwardButton.addEventListener('click', () => {
-        postList.scrollLeft += 400; // Scroll forward 50px
+        postList.scrollLeft += 328; // Scroll forward 50px
       });
     }
   }, []); // Empty dependency array to run this effect only once
@@ -49,7 +49,7 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
           </div>
         </header>
 
-        <section aria-label="Blog post list" className="flex items-baseline overflow-scroll gap-3" id="postList">
+        <section aria-label="Blog post list" className="flex items-baseline overflow-scroll gap-2" id="postList">
           {allPosts
             .filter((p) => post.frontmatter.select_stories.includes(p.frontmatter.title))
             .map((p, index) => (
