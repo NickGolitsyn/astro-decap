@@ -53,11 +53,6 @@ const PostPreview: React.FC<Props> = ({ post }) => {
 				// 	margin-top: 1rem;
 				// }
 
-				.post-preview {
-					padding-bottom: 2rem;
-					margin-bottom: 2rem;
-				}
-
 				header {
 					align-items: flex-start;
 					display: flex;
