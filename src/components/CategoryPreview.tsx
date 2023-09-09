@@ -107,7 +107,7 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
           autoPlaySpeed={3000}
           centerMode={false}
           // className=" overflow-hidden"
-          // containerClass="container"
+          // containerClass="flex gap-3"
           dotListClass="custom-dot-list"
           draggable
           focusOnSelect={false}
@@ -151,7 +151,7 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
           rtl={false}
           shouldResetAutoplay
           showDots
-          // sliderClass="flex"
+          // sliderClass="flex gap-5"
           slidesToSlide={1}
           swipeable
         >

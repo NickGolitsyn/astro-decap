@@ -30,13 +30,13 @@ const PostPreview: React.FC<Props> = ({ post }) => {
   const russianDate = `${day} ${month} ${year}`;
 
   return (
-    <article className="post-preview w-80 sm:w-96">
+    <article className="post-preview ">
 			<style>{`
 				.blog-image {
 					// width: 50vw;
-					width: 20rem;
-					height: 280px;
-					object-fit: cover;
+					width: 95%;
+					// height: 280px;
+					object-fit: contain;
 					object-position: center;
 					margin-top: 2rem;
 					margin-bottom: 1rem;
@@ -83,18 +83,19 @@ const PostPreview: React.FC<Props> = ({ post }) => {
         <img
           width="720"
           height="420"
-          className="blog-image"
+          className="blog-image select-none"
           loading="lazy"
           src={post.frontmatter.coverImage}
           alt="cover"
+					draggable="false"
         />
       )}
-      <header>
+      <header className="w-[95%] select-none flex items-center">
         <a href={post.url}>
-          <h1 className="title text-xl sm:text-2xl">{post.frontmatter.title}</h1>
+          <h1 className="title text-center text-lg break-word">{post.frontmatter.title}</h1>
         </a>
 				{post.frontmatter.select_author.map((e) => (
-					<p>{e}</p>
+					<p className="text-center text-base">{e}</p>
 				))}
       </header>
     </article>
