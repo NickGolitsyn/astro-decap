@@ -52,7 +52,7 @@ const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
           />
         </div>
         <div className="sm:w-1/2">
-          <p className="text-xs md:text-base font-light">{escapeHTML(posts[selectedPostIndex].frontmatter.description)}</p>
+          <p className="text-xs md:text-base font-light whitespace-pre-line">{posts[selectedPostIndex].frontmatter.description}</p>
         </div>
       </section>
 

@@ -5,9 +5,12 @@ import Layout from "../layouts/Layout.astro";
 let { description, permalink } = SITE;
 let issuePosts = await Astro.glob('./issues/*.md');
 
-// const originalDate = post.frontmatter.publishDate;
-// const [month, day] = originalDate.split(' ');
-// const reformattedDate = `${month}/${day}`;
+function formatDate(date) {
+  const originalDate = date;
+  const [month, day] = originalDate.split(' ');
+  const reformattedDate = `${month}/${day}`;
+  return reformattedDate;
+}
 
 function escapeHTML(html) {
   return html.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;');
@@ -21,16 +24,16 @@ function escapeHTML(html) {
   <main>
     {issuePosts.map((post) => (
       <article class="post-preview">
-        <section class="flex flex-col">
-          <p class=" font-medium">номер {post.frontmatter.issueNumber} - </p>
-          <h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1>
+        <section class="flex flex-col pb-8">
+          <p class=" font-medium">номер {post.frontmatter.issueNumber} - {formatDate(post.frontmatter.publishDate)}</p>
+          <a href={post.url}><h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1></a>
         </section>
         <section class="flex flex-col sm:flex-row gap-5">
           <div class="sm:w-1/2">
             <img width="720" height="420" class="hero-image mx-auto" loading="lazy" src={post.frontmatter.coverImage} />
           </div>
           <div class="sm:w-1/2">
-            <p class="text-xs md:text-base">{escapeHTML(post.frontmatter.description)}</p>
+            <p class="text-xs md:text-base font-light whitespace-pre-line">{post.frontmatter.description}</p>
           </div>
         </section>
       </article>
