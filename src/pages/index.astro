@@ -9,7 +9,7 @@ let categoryPosts = await Astro.glob('./categories/*.md');
 let issuePosts = await Astro.glob('./issues/*.md');
 
 let allPosts = await Astro.glob('./posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+// allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 ---
 <Layout {title} {description} {permalink}>
 	<main class="content">
@@ -21,7 +21,7 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
       <IssuePreview post={issuePosts[0]} allCategories={categoryPosts} allPosts={allPosts} />
 		</section> -->
     <!-- <IssueSelection client:only="react" issuePosts={issuePosts} categoryPosts={categoryPosts} allPosts={allPosts} /> -->
-    <IssuePreview client:only="react" posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
+    <IssuePreview client:load posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
     <!-- <IssueSelection /> -->
 	</main>
 </Layout>

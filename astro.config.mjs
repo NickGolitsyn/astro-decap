@@ -175,5 +175,7 @@ export default defineConfig({
       }],
       previewStyles: ['/src/styles/blog.css']
     }
-  }), tailwind(), react()]
+  }), tailwind(), react({
+    include: ['**/react/*'],
+  })]
 });

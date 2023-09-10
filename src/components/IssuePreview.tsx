@@ -7,14 +7,10 @@ interface Props {
   allPosts: any[];
 }
 
-function escapeHTML(html: string) {
-  return html.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;');
-}
-
 const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
   const [selectedPostIndex, setSelectedPostIndex] = useState(0);
 
-  const handleItemClick = (index) => {
+  const handleItemClick = (index: any) => {
     setSelectedPostIndex(index);
   };
   
@@ -30,10 +26,10 @@ const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
           <h1 className="cat-title text-xl sm:text-4xl">{posts[selectedPostIndex].frontmatter.title}</h1>
         </div>
         <div>
-          {posts.map((issuePost, index) => (
+          {posts.map((issuePost: any, index: any) => (
             <i
               key={index}
-              className={`bi text-neutral-400 ml-3 text-xl ${selectedPostIndex === index ? 'bi-circle-fill' : 'bi-circle'}`}
+              className={`bi text-neutral-400 ml-3 text-base sm:text-xl ${selectedPostIndex === index ? 'bi-circle-fill' : 'bi-circle'}`}
               onClick={() => handleItemClick(index)}
             ></i>
           ))}

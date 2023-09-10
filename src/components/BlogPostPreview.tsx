@@ -33,9 +33,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
     <article className="post-preview ">
 			<style>{`
 				.blog-image {
-					// width: 50vw;
 					width: 95%;
-					// height: 280px;
 					object-fit: contain;
 					object-position: center;
 					margin-top: 2rem;
@@ -45,7 +43,6 @@ const PostPreview: React.FC<Props> = ({ post }) => {
 
 				@media (max-width: 50em) {
 					.blog-image {
-						height: 260px;
 						margin-top: 0;
 					}
 				}
@@ -83,7 +80,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
         <img
           width="720"
           height="420"
-          className="blog-image select-none"
+          className="blog-image select-none h-fit"
           loading="lazy"
           src={post.frontmatter.coverImage}
           alt="cover"
