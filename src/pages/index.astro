@@ -16,7 +16,7 @@ let allPosts = await Astro.glob('./posts/*.md');
       <img width="720" height="420" class="home-image mx-auto my-8" loading="lazy" src='/assets/cover.jpg' />
     </section>
     <section>
-      <IssuePreview client:load posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
+      <IssuePreview client:only="react" posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
     </section>
 	</main>
 </Layout>
