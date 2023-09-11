@@ -3,7 +3,6 @@ import NetlifyCMS from 'astro-netlify-cms';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
   integrations: [NetlifyCMS({
     config: {
@@ -139,10 +138,6 @@ export default defineConfig({
           name: 'layout',
           widget: 'hidden',
           default: '../../layouts/BlogPostLayout.astro',
-          // options: [{
-          //   label: 'Blog Post',
-          //   value: '../../layouts/BlogPostLayout.astro'
-          // }]
         }]
       }, {
         name: 'authors',
@@ -175,7 +170,5 @@ export default defineConfig({
       }],
       previewStyles: ['/src/styles/blog.css']
     }
-  }), tailwind(), react({
-    include: ['**/react/*'],
-  })]
+  }), tailwind(), react()]
 });

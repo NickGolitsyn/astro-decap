@@ -7,16 +7,31 @@ interface Props {
   allPosts: any[];
 }
 
-const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
+const IssuePreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
   const [selectedPostIndex, setSelectedPostIndex] = useState(0);
 
-  const handleItemClick = (index: any) => {
+  const issueSwitcher = (index: any) => {
     setSelectedPostIndex(index);
   };
   
   const originalDate = posts[selectedPostIndex].frontmatter.publishDate;
   const [month, day] = originalDate.split(' ');
   const reformattedDate = `${month}/${day}`;
+
+  const selectedCategories = posts[selectedPostIndex].frontmatter.select_categories;
+
+  const categoryOrdering = {};
+  selectedCategories.forEach((story, index) => {
+    categoryOrdering[story] = index;
+  });
+
+  const sortedCategories = allCategories
+    .filter((p) => selectedCategories.includes(p.frontmatter.title))
+    .sort((a, b) => {
+      const orderA = categoryOrdering[a.frontmatter.title];
+      const orderB = categoryOrdering[b.frontmatter.title];
+      return orderA - orderB;
+  });
 
   return (
     <article className="post-preview">
@@ -29,8 +44,8 @@ const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
           {posts.map((issuePost: any, index: any) => (
             <i
               key={index}
-              className={`bi text-neutral-400 ml-3 text-base sm:text-xl ${selectedPostIndex === index ? 'bi-circle-fill' : 'bi-circle'}`}
-              onClick={() => handleItemClick(index)}
+              className={`bi text-neutral-400 ml-3 text-base sm:text-xl cursor-pointer ${selectedPostIndex === index ? 'bi-circle-fill' : 'bi-circle'}`}
+              onClick={() => issueSwitcher(index)}
             ></i>
           ))}
         </div>
@@ -53,14 +68,17 @@ const PostPreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
       </section>
 
       <section aria-label="Blog post list" className="mt-20">
-        {allCategories
+        {/* {allCategories
           .filter((p) => posts[selectedPostIndex].frontmatter.select_categories.includes(p.frontmatter.title))
           .map((p, index) => (
             <CategoryPreview key={index} post={p} allPosts={allPosts} />
-          ))}
+          ))} */}
+        {sortedCategories.map((p, index) => (
+          <CategoryPreview key={index} post={p} allPosts={allPosts} />
+        ))}
       </section>
     </article>
   );
 };
 
-export default PostPreview;
+export default IssuePreview;

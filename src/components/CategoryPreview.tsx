@@ -8,19 +8,7 @@ interface Props {
   allPosts: any[];
 }
 
-const CustomDotList = (allPosts, currentSlide?, goToSlide?) => (
-  // <ul className="custom-dot-list">
-  //   {allPosts.map((_, index) => (
-  //     <li key={index}>
-        <i
-          className={`bi bi-circle-fill text-neutral-400 ml-3 text-base sm:text-xl`}
-        ></i>
-  //     </li>
-  //   ))}
-  // </ul>
-);
-
-const PostPage: React.FC<Props> = ({ post, allPosts }) => {
+const CategoryPreview: React.FC<Props> = ({ post, allPosts }) => {
   const carouselRef = useRef(null);
   const selectedStories = post.frontmatter.select_stories;
 
@@ -95,14 +83,13 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
             }}
           >
             <Carousel
+              key={post.frontmatter.title}
               ref={carouselRef}
               additionalTransfrom={0}
               arrows={false}
               autoPlaySpeed={3000}
               centerMode={false}
-              // className=" overflow-hidden"
-              // containerClass="flex gap-3"
-              dotListClass="custom-dot-list"
+              // dotListClass="custom-dot-list"
               draggable
               focusOnSelect={false}
               infinite={false}
@@ -113,7 +100,6 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
               renderArrowsWhenDisabled={false}
               renderButtonGroupOutside={false}
               renderDotsOutside
-              // customDot={<CustomDotList />}
               responsive={{
                 desktop: {
                   breakpoint: {
@@ -165,4 +151,4 @@ const PostPage: React.FC<Props> = ({ post, allPosts }) => {
   );
 };
 
-export default PostPage;
+export default CategoryPreview;
