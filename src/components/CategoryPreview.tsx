@@ -89,7 +89,7 @@ const CategoryPreview: React.FC<Props> = ({ post, allPosts }) => {
               arrows={false}
               autoPlaySpeed={3000}
               centerMode={false}
-              // dotListClass="custom-dot-list"
+              dotListClass="custom-dot-list"
               draggable
               focusOnSelect={false}
               infinite={false}
