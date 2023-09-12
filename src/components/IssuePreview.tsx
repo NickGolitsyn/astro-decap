@@ -13,10 +13,6 @@ const IssuePreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
   const issueSwitcher = (index: any) => {
     setSelectedPostIndex(index);
   };
-  
-  useEffect(() => {
-    console.log(posts);
-  }, [])
 
   const originalDate = posts[selectedPostIndex].frontmatter.publishDate;
   const [month, day] = originalDate.split(' ');
@@ -43,9 +39,9 @@ const IssuePreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
       <header className="flex flex-row justify-between">
         <div>
           <p className="font-medium">номер {posts[selectedPostIndex].frontmatter.issueNumber} - {reformattedDate}</p>
-          <h1 className="cat-title text-xl sm:text-4xl">{posts[selectedPostIndex].frontmatter.title}</h1>
+          <h1 className="cat-title text-lg sm:text-4xl break-all">{posts[selectedPostIndex].frontmatter.title}</h1>
         </div>
-        <div>
+        <div className='min-w-fit'>
           {posts.map((issuePost: any, index: any) => (
             <i
               key={index}

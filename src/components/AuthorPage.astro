@@ -13,20 +13,17 @@ const authorPosts = allPosts.filter((post) => {
 });
 ---
 
-<div class="layout container">
+<div class="layout container mt-10">
 	<article class="content">
 		{avatar && <img width="720" height="420" class="avatar-image" loading="lazy" src={avatar} alt='cover' />}
-		<div class="flex gap-5 mt-5">
-			<header class="flex flex-col max-w-[50%] gap-y-5">
+		<div class="flex flex-col sm:flex-row gap-10 mt-5">
+			<header class="flex flex-col sm:max-w-[50%] gap-y-5">
 				<h1 class="title">{title}</h1>
 				<p>{description}</p>
-				<!-- <Author name={author} href={authorURL} /> -->
 			</header>
-			<!-- <main class="flex flex-wrap gap-3"> -->
 			<main class="flex flex-col gap-3">
-				<h1 class="mb-5">Тексты</h1>
+				<h1 class="mb-5 text-2xl">Тексты</h1>
 				{authorPosts.map((post) => (
-					// <BlogPostPreview {post} />
 					<p><a href={post.url}>{post.frontmatter.title}</a></o>
 				))}
 			</main>
@@ -42,21 +39,6 @@ const authorPosts = allPosts.filter((post) => {
 	.avatar-image {
 		max-width: 10rem;
 		max-height: 10rem;
-	}
-
-	.content :global(h2) {
-		margin-top: 4rem;
-	}
-
-	.title,
-	.author,
-	.publish-date {
-		margin: 0;
-	}
-
-	.publish-date,
-	.author {
-		color: var(--theme-text-lighter);
 	}
 
 	.title {

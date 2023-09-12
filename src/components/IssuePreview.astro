@@ -8,8 +8,6 @@ export interface Props {
 }
 
 const { post, allCategories, allPosts } = Astro.props;
-console.log(post.select_categories);
-
 
 const originalDate = post.publishDate;
 const [month, day] = originalDate.split(' ');

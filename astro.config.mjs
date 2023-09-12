@@ -10,7 +10,7 @@ export default defineConfig({
         name: 'git-gateway',
         branch: 'latest',
       },
-      logo_url: 'https://codestitch.app/frontend/images/logo.png',
+      logo_url: '/assets/chimeras.png',
       media_folder: 'public/assets/blog',
       public_folder: '/assets/blog',
       collections: [{

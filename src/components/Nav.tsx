@@ -65,7 +65,7 @@ export default function Nav() {
         initial={{ opacity: 0, x: -25 }}
         transition={{ delay: 0.35 }} 
         href="/"
-        className="z-50"
+        className="z-50 flex items-center"
       >
         <h1 className="font-bold text-2xl sm:text-3xl uppercase">{SITE.title}</h1>
       </motion.a>

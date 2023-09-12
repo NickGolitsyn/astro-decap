@@ -4,7 +4,6 @@ import Layout from './Layout.astro';
 
 const { content } = Astro.props;
 const { title, avatar, description, permalink } = content;
-console.log(content);
 
 let categoryPosts = await Astro.glob('../pages/categories/*.md');
 let issuePosts = await Astro.glob('../pages/issues/*.md');

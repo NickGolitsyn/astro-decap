@@ -46,9 +46,6 @@ const PostPreview: React.FC<Props> = ({ post }) => {
 						margin-top: 0;
 					}
 				}
-				// .content :global(main > * + *) {
-				// 	margin-top: 1rem;
-				// }
 
 				header {
 					align-items: flex-start;
@@ -89,7 +86,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
       )}
       <header className="w-[95%] select-none flex items-center">
         <a href={post.url}>
-          <h1 className="title text-center text-lg break-word">{post.frontmatter.title}</h1>
+          <h1 className="title text-center text-lg">{post.frontmatter.title}</h1>
         </a>
 				{post.frontmatter.select_author.map((e, index) => (
 					<p key={index} className="text-center text-base">{e}</p>
