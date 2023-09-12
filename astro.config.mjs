@@ -17,9 +17,9 @@ export default defineConfig({
         name: 'settings',
         label: 'Настройки',
         files: [{
-          label: 'Global Settings',
+          label: 'Глобальные настройки',
           name: 'global',
-          file: 'src/pages/settings/global.json',
+          file: 'src/pages/settings/global.md',
           fields: [{
             label: 'Title',
             name: 'title',
@@ -28,6 +28,14 @@ export default defineConfig({
             label: 'Main Image',
             name: 'mainImage',
             widget: 'image'
+          }, {
+            label: 'Cсылка на ВК',
+            name: 'vk',
+            widget: 'string'
+          }, {
+            label: 'Cсылка на телеграм',
+            name: 'telegram',
+            widget: 'string'
           }]
         }]
       }, {
@@ -39,7 +47,7 @@ export default defineConfig({
         fields: [{
           name: "issueNumber",
           widget: "number",
-          label: "Номер №"
+          label: "№ номера"
         }, {
           name: "title",
           widget: "string",
@@ -52,11 +60,6 @@ export default defineConfig({
           name: "description",
           widget: "text",
           label: "Описание номера"
-        }, {
-          name: "body",
-          widget: "markdown",
-          label: "Описание номера",
-          required: false
         }, {
           name: 'publishDate',
           widget: 'datetime',
@@ -72,6 +75,10 @@ export default defineConfig({
           search_fields: ["title"],
           value_field: "title",
           display_fields: ["title"]
+        }, {
+          name: 'layout',
+          widget: 'hidden',
+          default: '../../layouts/IssueLayout.astro',
         }]
       }, {
         name: "categories",
@@ -125,11 +132,6 @@ export default defineConfig({
           search_fields: ["title"],
           value_field: "title",
           display_fields: ["title"]
-        }, {
-          name: 'description',
-          widget: 'string',
-          label: 'Описание',
-          required: false
         }, {
           name: 'body',
           widget: 'markdown',

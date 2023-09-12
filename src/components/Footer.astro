@@ -1,10 +1,15 @@
+---
+let set = await Astro.glob('../pages/settings/*.md');
+let settings = set[0].frontmatter;
+---
+
 <footer>
   <div class="flex justify-between max-w-[65em] mx-auto px-8 uppercase !font-bold gap-3 flex-col sm:flex-row sm:text-base">
     <div class="flex gap-3 flex-col sm:flex-row sm:gap-5">
-      <a href="/">
+      <a href={settings.vk} target="_blank">
         <h1>Вконтакте</h1>
       </a>
-      <a href="/">
+      <a href={settings.telegram} target="_blank">
         <h1>Телеграм</h1>
       </a>
     </div>

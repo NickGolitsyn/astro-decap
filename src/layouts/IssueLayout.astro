@@ -1,0 +1,18 @@
+---
+import IssuePreview from '../components/IssuePreview.astro';
+import Layout from './Layout.astro';
+
+const { content } = Astro.props;
+const { title, avatar, description, permalink } = content;
+console.log(content);
+
+let categoryPosts = await Astro.glob('../pages/categories/*.md');
+let issuePosts = await Astro.glob('../pages/issues/*.md');
+let allPosts = await Astro.glob('../pages/posts/*.md');
+---
+
+<Layout {title} {description} {permalink}>
+	<IssuePreview post={content} allCategories={categoryPosts} allPosts={allPosts}>
+		<slot />
+	</IssuePreview>
+</Layout>

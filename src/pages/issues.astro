@@ -19,9 +19,9 @@ function formatDate(date) {
   </header>
   <main>
     {issuePosts.map((post) => (
-      <article class="post-preview">
+      <article class="py-5">
         <section class="flex flex-col pb-8">
-          <p class=" font-medium">номер {post.frontmatter.issueNumber} - {formatDate(post.frontmatter.publishDate)}</p>
+          <p class="font-medium">номер {post.frontmatter.issueNumber} - {formatDate(post.frontmatter.publishDate)}</p>
           <a href={post.url}><h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1></a>
         </section>
         <section class="flex flex-col sm:flex-row gap-5">
@@ -42,9 +42,5 @@ function formatDate(date) {
 	.cat-title {
 		font-weight: 700;
 		color: var(--theme-text);
-	}
-	.post-preview {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
 	}
 </style>

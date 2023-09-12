@@ -5,15 +5,16 @@ import Layout from '../layouts/Layout.astro';
 
 let { title, description, permalink } = SITE;
 
+let set = await Astro.glob('./settings/*.md');
+let settings = set[0].frontmatter;
 let categoryPosts = await Astro.glob('./categories/*.md');
 let issuePosts = await Astro.glob('./issues/*.md');
 let allPosts = await Astro.glob('./posts/*.md');
-// allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 ---
 <Layout {title} {description} {permalink}>
 	<main class="content">
     <section>
-      <img width="720" height="420" class="home-image mx-auto my-8" loading="lazy" src='/assets/cover.jpg' />
+      <img width="720" height="420" class="home-image mx-auto my-8" loading="lazy" src={settings.mainImage} />
     </section>
     <section>
       <IssuePreview client:only="react" posts={issuePosts} allCategories={categoryPosts} allPosts={allPosts} />
@@ -24,7 +25,6 @@ let allPosts = await Astro.glob('./posts/*.md');
 	header {
     width: 100%;
     height: 100%;
-    /* background-color: var(--theme-bg-offset); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,17 +32,13 @@ let allPosts = await Astro.glob('./posts/*.md');
 
   .home-image {
 		width: 100vw;
-		/* aspect-ratio: 2/1; */
 		object-fit: cover;
 		object-position: center;
-		/* margin-top: 2rem; */
 		margin-bottom: 4rem;
-		/* max-width: 1280px; */
 	}
 
 	@media (max-width: 50em) {
 		.home-image {
-			/* height: 260px; */
 			margin-top: 0;
 			margin-bottom: 2rem;
       max-width: 100vw;
@@ -52,13 +48,8 @@ let allPosts = await Astro.glob('./posts/*.md');
 	}
 
   .content {
-    /* margin-top: 4rem; */
     margin-bottom: 8rem;
   }
-
-  /* .content :global(main > * + *) {
-    margin-top: 1rem;
-  } */
 
   .intro {
     padding-bottom: 4rem;

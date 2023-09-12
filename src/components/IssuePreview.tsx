@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CategoryPreview from './CategoryPreview';
 
 interface Props {
-  posts: any;
+  posts: any[];
   allCategories: any[];
   allPosts: any[];
 }
@@ -14,11 +14,16 @@ const IssuePreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
     setSelectedPostIndex(index);
   };
   
+  useEffect(() => {
+    console.log(posts);
+  }, [])
+
   const originalDate = posts[selectedPostIndex].frontmatter.publishDate;
   const [month, day] = originalDate.split(' ');
   const reformattedDate = `${month}/${day}`;
 
   const selectedCategories = posts[selectedPostIndex].frontmatter.select_categories;
+
 
   const categoryOrdering = {};
   selectedCategories.forEach((story, index) => {
@@ -34,7 +39,7 @@ const IssuePreview: React.FC<Props> = ({ posts, allCategories, allPosts }) => {
   });
 
   return (
-    <article className="post-preview">
+    <article>
       <header className="flex flex-row justify-between">
         <div>
           <p className="font-medium">номер {posts[selectedPostIndex].frontmatter.issueNumber} - {reformattedDate}</p>
