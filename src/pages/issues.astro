@@ -14,12 +14,12 @@ function formatDate(date) {
 ---
 
 <Layout title="все номера" {description} {permalink}>
-  <header class="mb-1 md:mb-10 mt-5">
+  <header class="mb-1 md:mb-5 mt-5">
     <h1 class="text-2xl sm:text-4xl font-bold">все номера</h1>
   </header>
   <main>
     {issuePosts.map((post) => (
-      <article class="py-5">
+      <article class="pb-5">
         <section class="flex flex-col pb-8">
           <p class="font-medium">номер {post.frontmatter.issueNumber} - {formatDate(post.frontmatter.publishDate)}</p>
           <a href={post.url}><h1 class="cat-title text-xl sm:text-4xl">{post.frontmatter.title}</h1></a>
