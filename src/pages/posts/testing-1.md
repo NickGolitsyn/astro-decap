@@ -4,7 +4,7 @@ title: testing
 publishDate: 07 Sep 2023
 description: fsfd
 layout: ../../layouts/BlogPostLayout.astro
-select_author:
+author:
   - Orit Gat
   - Димитрис Лиакос
 ---

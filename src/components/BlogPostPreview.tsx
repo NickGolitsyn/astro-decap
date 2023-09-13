@@ -88,7 +88,7 @@ const PostPreview: React.FC<Props> = ({ post }) => {
         <a href={post.url}>
           <h1 className="title text-center text-lg">{post.frontmatter.title}</h1>
         </a>
-				{post.frontmatter.select_author.map((e, index) => (
+				{post.frontmatter.author.map((e, index) => (
 					<p key={index} className="text-center text-base">{e}</p>
 				))}
       </header>

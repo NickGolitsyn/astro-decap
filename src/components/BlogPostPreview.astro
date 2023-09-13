@@ -36,7 +36,7 @@ const russianDate = `${day} ${month} ${year}`;
 	{post.frontmatter.coverImage && <img width="720" height="420" class="hero-image" loading="lazy" src={post.frontmatter.coverImage} alt='cover' />}
 	<div>
 		<a href={post.url}><h1 class="title text-xl sm:text-4xl">{post.frontmatter.title}</h1></a>
-		{post.frontmatter.select_author.map((e) => (
+		{post.frontmatter.author.map((e) => (
 			<p>{e}</p>
 		))}
 	</div>

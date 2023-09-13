@@ -171,7 +171,7 @@ a {
 	gap: 0.5rem;
 }
 
-a > code {
+/* a > code {
 	position: relative;
 	color: var(--theme-accent);
 	background: transparent;
@@ -189,7 +189,7 @@ a > code::before {
 	background: var(--theme-accent);
 	opacity: var(--theme-accent-opacity);
 	border-radius: var(--border-radius);
-}
+} */
 
 a:hover,
 a:focus {
@@ -208,7 +208,7 @@ strong {
 
 /* Supporting Content */
 
-code {
+/* code {
 	--border-radius: 3px;
 	--padding-block: 0.2rem;
 	--padding-inline: 0.33rem;
@@ -225,9 +225,18 @@ code {
 
 pre.astro-code > code {
 	all: unset;
-}
+} */
 
 pre {
+	background-color: transparent !important;
+}
+
+code > span > span {
+	color: var(--theme-text-light) !important;
+	font-family: 'Unbounded', cursive;
+}
+
+/* pre {
 	position: relative;
 	--padding-block: 1rem;
 	--padding-inline: 2rem;
@@ -243,7 +252,7 @@ pre {
 		--padding-inline: 1.25rem;
 		border-radius: 8px;
 	}
-}
+} */
 
 img {
 	display: block;

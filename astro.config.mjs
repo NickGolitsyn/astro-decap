@@ -125,7 +125,7 @@ export default defineConfig({
           time_format: false,
           label: 'Дата'
         }, {
-          name: "select_author",
+          name: "author",
           label: "Автор",
           widget: "relation",
           multiple: true,

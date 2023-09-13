@@ -1,13 +1,13 @@
 ---
-import BlogPost from '../components/BlogPost';
+import BlogPost from '../components/BlogPost.astro';
 import Layout from './Layout.astro';
 
 const { content } = Astro.props;
-const { title, description, publishDate, author, authorURL, heroImage, coverImage, permalink, alt } = content;
+const { title, description, publishDate, author, heroImage, coverImage, permalink, alt } = content;
 ---
 
 <Layout {title} {description} {permalink}>
-	<BlogPost client:load {title} {author} {authorURL} {heroImage} {coverImage} {publishDate} {alt}>
+	<BlogPost {title} {author} {heroImage} {coverImage} {publishDate} {alt}>
 		<slot />
 	</BlogPost>
 </Layout>

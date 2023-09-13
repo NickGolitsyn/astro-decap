@@ -4,50 +4,21 @@ import Author from './Author.astro';
 export interface Props {
 	title: string;
 	author: string;
-	authorURL: string;
 	publishDate: string;
 	heroImage: string;
 	coverImage: string;
 	alt: string;
 }
-const { title, author, authorURL, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
-
-
-function getRussianMonth(englishMonth) {
-  const months = {
-    "Jan": "Янв",
-    "Feb": "Фев",
-    "Mar": "Мар",
-    "Apr": "Апр",
-    "May": "Май",
-    "Jun": "Июн",
-    "Jul": "Июл",
-    "Aug": "Авг",
-    "Sep": "Сен",
-    "Oct": "Окт",
-    "Nov": "Ноя",
-    "Dec": "Дек"
-  };
-
-  return months[englishMonth];
-}
-
-const parts = publishDate.split(" ");
-const day = parts[0];
-const month = getRussianMonth(parts[1]);
-const year = parts[2];
-
-const russianDate = `${day} ${month} ${year}`;
+const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
 ---
 
-<div class="layout container select-none">
+<div class="layout container">
 	<article class="content">
 		<div>
 			<header>
-				{coverImage && <img width="720" height="420" class="hero-image element" loading="lazy" src={coverImage} alt={alt} />}
-				<p class="publish-date element">{russianDate}</p>
+				{coverImage && <img width="720" height="420" class="hero-image element my-5" loading="lazy" src={coverImage} alt={alt} />}
 				<h1 class="title element">{title}</h1>
-				<Author name={author} href={authorURL} />
+				<p>{author}</p>
 			</header>
 			<main class="element">
 				<slot />
@@ -56,58 +27,12 @@ const russianDate = `${day} ${month} ${year}`;
 	</article>
 </div>
 
-<script>
-  window.addEventListener("load", () => {
-	const elements = document.querySelectorAll(".element");
-
-	let chooseElement;
-
-	const move = (e) => {
-		e.style.position = "absolute";
-		chooseElement = e;
-
-		document.onmousemove = (event) => {
-			if (chooseElement) {
-				const x = event.pageX;
-				const y = event.pageY;
-
-				chooseElement.style.left = x + "px";
-				chooseElement.style.top = y + "px";
-			}
-		};
-	};
-
-	elements.forEach((element) => {
-		const e = element;
-
-		e.addEventListener("mousedown", () => {
-			move(e);
-		});
-	});
-
-	document.onmouseup = () => {
-		chooseElement = null;
-	};
-});
-</script>
-
 <style>
 	.hero-image {
-		width: 70vw;
-		aspect-ratio: 2/1;
+		width: 35vw;
 		object-fit: cover;
 		object-position: center;
-		margin-top: 2rem;
-		margin-bottom: 4rem;
 		max-width: 1280px;
-	}
-
-	@media (max-width: 50em) {
-		.hero-image {
-			height: 260px;
-			margin-top: 0;
-			margin-bottom: 2rem;
-		}
 	}
 
 	.content {
