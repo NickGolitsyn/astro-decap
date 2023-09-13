@@ -13,7 +13,7 @@ const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props a
 ---
 
 <div class="layout container">
-	<article class="content">
+	<article>
 		<div>
 			<header>
 				{coverImage && <img width="720" height="420" class="hero-image element my-5" loading="lazy" src={coverImage} alt={alt} />}
@@ -35,10 +35,6 @@ const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props a
 		max-width: 1280px;
 	}
 
-	.content {
-		margin-bottom: 8rem;
-	}
-
 	.content :global(main > * + *) {
 		margin-top: 1rem;
 	}
@@ -53,10 +49,6 @@ const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props a
 		text-align: center;
 		align-items: center;
 		justify-content: center;
-
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
 	}
 
 	.title,
