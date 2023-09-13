@@ -1,5 +1,5 @@
 ---
-issueNumber: 12
+issueNumber: 123
 title: Идиорритмия
 coverImage: /assets/blog/oblozhka_1_5d0a02a3c2.png
 description: >-
