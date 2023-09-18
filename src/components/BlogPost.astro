@@ -1,6 +1,4 @@
 ---
-import Author from './Author.astro';
-
 export interface Props {
 	title: string;
 	author: string;
@@ -8,8 +6,15 @@ export interface Props {
 	heroImage: string;
 	coverImage: string;
 	alt: string;
+	htmlfile?: string;
 }
-const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props as Props;
+const { title, author, publishDate, heroImage, coverImage, alt, htmlfile } = Astro.props as Props;
+
+function resizeIframe(obj) {
+			console.log('hi');
+			obj.style.height =
+				obj.contentWindow.document.documentElement.scrollHeight + "px";
+		}
 ---
 
 <div class="layout container">
@@ -21,10 +26,24 @@ const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props a
 				<p>{author}</p>
 			</header>
 			<main class="element">
-				<slot />
+				<iframe src={htmlfile} class="w-full" frameborder="0" scrolling="no" id="frame" onload="resizeIframe(this)" />
+				<!-- <slot /> -->
 			</main>
 		</div>
 	</article>
+	<script is:inline>
+		let frame = document.getElementById('frame');
+		
+		function resizeIframe(obj) {
+			const elementsInsideIframe = frame.contentDocument.querySelectorAll('body');
+			elementsInsideIframe.forEach((element) => {
+				element.style.padding = '0';
+				element.style.maxWidth = '100%';
+			});
+			obj.style.height =
+				obj.contentWindow.document.documentElement.scrollHeight + "px";
+		}
+	</script>
 </div>
 
 <style>
@@ -66,4 +85,8 @@ const { title, author, publishDate, heroImage, coverImage, alt } = Astro.props a
 		font-size: 2.25rem;
 		font-weight: 700;
 	}
+
+	.c22 {
+	background-color: red !important;
+}
 </style>

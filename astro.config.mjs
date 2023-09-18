@@ -138,6 +138,10 @@ export default defineConfig({
           widget: 'markdown',
           label: 'Материал'
         }, {
+          name: 'htmlfile',
+          widget: 'file',
+          label: 'Материал'
+        }, {
           name: 'layout',
           widget: 'hidden',
           default: '../../layouts/BlogPostLayout.astro',
