@@ -1,5 +1,5 @@
 ---
-import BlogPost from '../components/BlogPost.astro';
+import BlogPost from '../components/BlogPost';
 import Layout from './Layout.astro';
 
 const { content } = Astro.props;
@@ -7,7 +7,7 @@ const { title, description, publishDate, author, heroImage, coverImage, permalin
 ---
 
 <Layout {title} {description} {permalink}>
-	<BlogPost {title} {author} {heroImage} {coverImage} {publishDate} {alt} {htmlfile}>
+	<BlogPost client:only="react" {title} {author} {heroImage} {coverImage} {publishDate} {alt} {htmlfile}>
 		<slot />
 	</BlogPost>
 </Layout>

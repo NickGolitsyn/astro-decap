@@ -20,10 +20,7 @@ const { title, description, permalink } = Astro.props;
     <BaseHead {title} {description} {permalink} />
 	</head>
 	<body>
-		<!-- <Nav client:load /> -->
-		<!-- <div class="mb-24"></div> -->
     <Nav client:idle />
-    <!-- <BlogHeader /> -->
     <div class="wrapper">
       <slot />
     </div>
@@ -38,15 +35,6 @@ const { title, description, permalink } = Astro.props;
 	body {
 		overflow-x: hidden;
 	}
-	/* img {
-		user-select: none;
-		-webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-		pointer-events: none;
-	} */
 
   header {
     width: 100%;
