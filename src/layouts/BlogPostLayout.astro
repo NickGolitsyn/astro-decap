@@ -1,14 +1,26 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
 import BlogPost from '../components/BlogPost';
+import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav';
 import Layout from './Layout.astro';
 
 const { content } = Astro.props;
 const { title, description, publishDate, author, heroImage, coverImage, permalink, htmlfile, alt } = content;
 ---
 
-<Layout {title} {description} {permalink}>
-	<BlogPost client:only="react" {title} {author} {heroImage} {coverImage} {publishDate} {alt} {htmlfile}>
-		<slot />
-	</BlogPost>
-</Layout>
-
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+    <BaseHead {title} {description} {permalink} />
+	</head>
+	<body>
+    <Nav client:idle />
+    <div>
+			<BlogPost client:only="react" {title} {author} {heroImage} {coverImage} {publishDate} {alt} {htmlfile}>
+				<slot />
+			</BlogPost>
+    </div>
+		<Footer />
+	</body>
+</html>

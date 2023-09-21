@@ -26,12 +26,12 @@ function resizeIframe(obj) {
 				<p>{author}</p>
 			</header>
 			<main class="element">
-				<iframe src={htmlfile} class="w-full" frameborder="0" scrolling="no" id="frame" onload="resizeIframe(this)" />
-				<!-- <slot /> -->
+				<!-- <iframe src={htmlfile} class="w-full" frameborder="0" scrolling="no" id="frame" onload="resizeIframe(this)" /> -->
+				<slot />
 			</main>
 		</div>
 	</article>
-	<script is:inline>
+	<!-- <script is:inline>
 		let frame = document.getElementById('frame');
 		
 		function resizeIframe(obj) {
@@ -43,7 +43,7 @@ function resizeIframe(obj) {
 			obj.style.height =
 				obj.contentWindow.document.documentElement.scrollHeight + "px";
 		}
-	</script>
+	</script> -->
 </div>
 
 <style>

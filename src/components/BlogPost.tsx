@@ -92,14 +92,14 @@ function Article({ title, author, publishDate, heroImage, coverImage, htmlfile, 
 				}
 				`}
 			</style>
-      <article className="content">
-        <div>
+      <article className="content flex items-center flex-col w-screen">
+        <div className="w-full max-w-[65rem]">
 					<header>
 						{coverImage && <img width="720" height="420" className="hero-image element my-5" loading="lazy" src={coverImage} alt={alt} />}
 						<h1 className="title element">{title}</h1>
 						<p>{author}</p>
 					</header>
-          <main className="element">
+          <main className="element mx-1 sm:mx-5">
 						<iframe src={htmlfile} className="w-full" scrolling="no" id="frame" />
 						{/* <embed src={htmlfile} type="application/pdf" width="100%" height="500" /> */}
           </main>
